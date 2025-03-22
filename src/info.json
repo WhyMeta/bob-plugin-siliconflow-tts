@@ -1,0 +1,233 @@
+{
+  "identifier": "com.whymeta.bob-plugin-siliconflow-tts",
+  "version": "0.0.1",
+  "category": "tts",
+  "name": "Siliconflow 文本转语音插件",
+  "summary": "Siliconflow 文本转语音插件",
+  "icon": "137",
+  "author": "WhyMeta <whymeta@oaiworkers.online>",
+  "homepage": "https://github.com/whymeta/bob-plugin-siliconflow-tts",
+  "appcast": "https://raw.githubusercontent.com/whymeta/bob-plugin-siliconflow-tts/main/appcast.json",
+  "minBobVersion": "1.6.0",
+  "options": [
+    {
+      "identifier": "apiUrl",
+      "type": "text",
+      "title": "输入 API Url 完整路径",
+      "textConfig": {
+        "type": "visible",
+        "height": 21,
+        "placeholderText": "https://api.siliconflow.cn/v1/audio/speech"
+    }
+    },
+    {
+      "identifier": "apiKey",
+      "type": "text",
+      "title": "输入 API Key"
+    },
+    {
+      "identifier": "voice",
+      "type": "menu",
+      "title": "音色",
+      "defaultValue": "沉稳女声 - anna",
+      "menuValues": [
+        {
+          "title": "沉稳男声 - alex",
+          "value": "alex"
+        },
+        {
+          "title": "低沉男声 - benjamin",
+          "value": "benjamin"
+        },
+        {
+          "title": "磁性男声 - charles",
+          "value": "charles"
+        },
+        {
+          "title": "欢快男声 - david",
+          "value": "david"
+        },
+        {
+          "title": "沉稳女声 - anna",
+          "value": "anna"
+        },
+        {
+          "title": "激情女声 - bella",
+          "value": "bella"
+        },
+        {
+          "title": "温柔女声 - claire",
+          "value": "claire"
+        },
+        {
+          "title": "欢快女声 - diana",
+          "value": "diana"
+        }
+      ]
+    },
+    {
+      "identifier": "speed",
+      "type": "menu",
+      "title": "音频速度",
+      "defaultValue": "1.0",
+      "menuValues": [
+        {
+          "title": "0.25x",
+          "value": "0.25"
+        },
+        {
+          "title": "0.5x",
+          "value": "0.5"
+        },
+        {
+          "title": "0.75x",
+          "value": "0.75"
+        },
+        {
+          "title": "1.0x",
+          "value": "1.0"
+        },
+        {
+          "title": "1.25x",
+          "value": "1.25"
+        },
+        {
+          "title": "1.5x",
+          "value": "1.5"
+        },
+        {
+          "title": "1.75x",
+          "value": "1.75"
+        },
+        {
+          "title": "2.0x",
+          "value": "2.0"
+        },
+        {
+          "title": "2.25x",
+          "value": "2.25"
+        },
+        {
+          "title": "2.5x",
+          "value": "2.5"
+        },
+        {
+          "title": "2.75x",
+          "value": "2.75"
+        },
+        {
+          "title": "3.0x",
+          "value": "3.0"
+        },
+        {
+          "title": "3.25x",
+          "value": "3.25"
+        },
+        {
+          "title": "3.5x",
+          "value": "3.5"
+        },
+        {
+          "title": "3.75x",
+          "value": "3.75"
+        },
+        {
+          "title": "4.0x",
+          "value": "4.0"
+        }
+      ]
+    },
+    {
+      "identifier": "gain",
+      "type": "menu",
+      "title": "音频增益",
+      "defaultValue": "0.0",
+      "menuValues": [
+        {
+          "title": "-10.0dB",
+          "value": "-10.0"
+        },
+        {
+          "title": "-9.0dB",
+          "value": "-9.0"
+        },
+        {
+          "title": "-8.0dB",
+          "value": "-8.0"
+        },
+        {
+          "title": "-7.0dB",
+          "value": "-7.0"
+        },
+        {
+          "title": "-6.0dB",
+          "value": "-6.0"
+        },
+        {
+          "title": "-5.0dB",
+          "value": "-5.0"
+        },
+        {
+          "title": "-4.0dB",
+          "value": "-4.0"
+        },
+        {
+          "title": "-3.0dB",
+          "value": "-3.0"
+        },
+        {
+          "title": "-2.0dB",
+          "value": "-2.0"
+        },
+        {
+          "title": "-1.0dB",
+          "value": "-1.0"
+        },
+        {
+          "title": "0.0dB",
+          "value": "0.0"
+        },
+        {
+          "title": "1.0dB",
+          "value": "1.0"
+        },
+        {
+          "title": "2.0dB",
+          "value": "2.0"
+        },
+        {
+          "title": "3.0dB",
+          "value": "3.0"
+        },
+        {
+          "title": "4.0dB",
+          "value": "4.0"
+        },
+        {
+          "title": "5.0dB",
+          "value": "5.0"
+        },
+        {
+          "title": "6.0dB",
+          "value": "6.0"
+        },
+        {
+          "title": "7.0dB",
+          "value": "7.0"
+        },
+        {
+          "title": "8.0dB",
+          "value": "8.0"
+        },
+        {
+          "title": "9.0dB",
+          "value": "9.0"
+        },
+        {
+          "title": "10.0dB",
+          "value": "10.0"
+        }
+      ]
+    }
+  ]
+}
