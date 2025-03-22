@@ -18,7 +18,7 @@
         "type": "visible",
         "height": 21,
         "placeholderText": "https://api.siliconflow.cn/v1/audio/speech"
-    }
+      }
     },
     {
       "identifier": "apiKey",
