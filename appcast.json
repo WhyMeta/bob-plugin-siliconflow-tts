@@ -2,6 +2,13 @@
   "identifier": "com.whymeta.bob-plugin-siliconflow-tts",
   "versions": [
     {
+      "version": "0.0.2",
+      "desc": "auto",
+      "sha256": "dfa98c8532f8f4e69a60a73299fe62722ea5846fdb619dcca275057c52a19308",
+      "url": "https://github.com/whymeta/bob-plugin-siliconflow-tts/releases/download/v0.0.2/bob-plugin-siliconflow-tts-0.0.2.bobplugin",
+      "minBobVersion": "0.5.0"
+    },
+    {
       "version": "0.0.1",
       "desc": "auto",
       "sha256": "2a516bbbfaf37e0d75a8b657bac9866bd60620833ef463be887b141435d98adf",
