@@ -1,6 +1,6 @@
 {
   "identifier": "com.whymeta.bob-plugin-siliconflow-tts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "category": "tts",
   "name": "Siliconflow 文本转语音插件",
   "summary": "Siliconflow 文本转语音插件",
