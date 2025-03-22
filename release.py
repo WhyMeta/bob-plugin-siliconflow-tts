@@ -63,7 +63,7 @@ def update_appcast(version, plugin_file):
         "version": version,
         "desc": "auto",
         "sha256": sha256,
-        "url": f"https://raw.githubusercontent.com/whymeta/bob-plugin-siliconflow-tts/releases/download/v{version}/{plugin_file}",
+        "url": f"https://github.com/whymeta/bob-plugin-siliconflow-tts/releases/download/v{version}/{plugin_file}",
         "minBobVersion": "0.5.0"
     }
     

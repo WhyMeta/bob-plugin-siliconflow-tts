@@ -5,7 +5,7 @@
       "version": "0.0.1",
       "desc": "auto",
       "sha256": "2a516bbbfaf37e0d75a8b657bac9866bd60620833ef463be887b141435d98adf",
-      "url": "https://raw.githubusercontent.com/whymeta/bob-plugin-siliconflow-tts/releases/download/v0.0.1/bob-plugin-siliconflow-tts-0.0.1.bobplugin",
+      "url": "https://github.com/whymeta/bob-plugin-siliconflow-tts/releases/download/v0.0.1/bob-plugin-siliconflow-tts-0.0.1.bobplugin",
       "minBobVersion": "0.5.0"
     }
   ]
