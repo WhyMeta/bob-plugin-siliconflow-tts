@@ -1,0 +1,69 @@
+name: Release Bob Plugin
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout: |
+            .github
+            src
+            release.py
+            appcast.json
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          git fetch --tags
+          latest_tag=$(git tag | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+          if [ -z "$latest_tag" ]; then
+            echo "version=v0.0.1" >> $GITHUB_OUTPUT
+          else
+            current_version=${latest_tag#v}
+            IFS='.' read -r major minor patch <<< "$current_version"
+            new_version="v$major.$minor.$((patch + 1))"
+            echo "version=$new_version" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Release Package
+        run: |
+          version="${{ steps.get_latest_tag.outputs.version }}"
+          version_number=${version#v}
+          python release.py $version_number
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_latest_tag.outputs.version }}
+          name: Release ${{ steps.get_latest_tag.outputs.version }}
+          files: |
+            bob-plugin-siliconflow-tts-*.bobplugin
+            appcast.json
+          generate_release_notes: true
+
+      - name: Commit and Push appcast.json
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add appcast.json
+          git add src/info.json
+          git commit -m "chore: update version files for ${{ steps.get_latest_tag.outputs.version }}"
+          git push 
