@@ -7,51 +7,49 @@ function supportLanguages() {
 
 function pluginValidate(completion) {
   (async () => {
-      try {
-          // Check if API key is provided
-          if (!$option.apiKey) {
-              completion({
-                  result: false,
-                  error: {
-                      type: "secretKey",
-                      message: "请输入您的 Siliconflow API Key",
-                      troubleshootingLink: "https://bobtranslate.com/faq/"
-                  }
-              });
-              return;
+    try {
+      if (!$option.apiKey) {
+        completion({
+          result: false,
+          error: {
+            type: "secretKey",
+            message: "请输入您的 Siliconflow API Key",
+            troubleshootingLink: "https://bobtranslate.com/faq/"
           }
-
-          // Make a test request to get voices (lightweight API call)
-          const resp = await $http.request({
-              method: "GET",
-              url: `${$option.apiUrl}/v1/audio/voice/list`,
-              header: {
-                  'Authorization': `Bearer ${$option.apiKey}`
-              }
-          });
-
-          if (resp.response.statusCode === 200) {
-              completion({ result: true });
-          } else {
-              completion({
-                  result: false,
-                  error: {
-                      type: "secretKey",
-                      message: "Invalid API key",
-                      troubleshootingLink: "https://bobtranslate.com/faq/"
-                  }
-              });
-          }
-      } catch (err) {
-          completion({
-              result: false,
-              error: {
-                  type: "network",
-                  message: "Failed to validate API key: " + (err.message || "Unknown error"),
-                  troubleshootingLink: "https://bobtranslate.com/faq/"
-              }
-          });
+        });
+        return;
       }
+
+      const resp = await $http.request({
+        method: "GET",
+        url: `${$option.apiUrl}/v1/audio/voice/list`,
+        header: {
+          'Authorization': `Bearer ${$option.apiKey}`
+        }
+      });
+
+      if (resp.response.statusCode === 200) {
+        completion({ result: true });
+      } else {
+        completion({
+          result: false,
+          error: {
+            type: "secretKey",
+            message: "Invalid API key",
+            troubleshootingLink: "https://bobtranslate.com/faq/"
+          }
+        });
+      }
+    } catch (err) {
+      completion({
+        result: false,
+        error: {
+          type: "network",
+          message: "Failed to validate API key: " + (err.message || "Unknown error"),
+          troubleshootingLink: "https://bobtranslate.com/faq/"
+        }
+      });
+    }
   })();
 }
 
@@ -77,26 +75,57 @@ function tts(query, completion) {
         voice: `FunAudioLLM/CosyVoice2-0.5B:${$option.voice}`,
         speed: parseFloat($option.speed),
         gain: parseFloat($option.gain),
-        // response_format: "mp3",
+        response_format: "mp3",
         stream: true
       },
       handler: function (resp) {
-        // Convert response to base64
-        let audioData = $data.fromData(resp.rawData);
-        var rawData = resp.data.audio_data;
+        if (resp.error) {
+          $log.error(`TTS请求失败: ${resp.error}`);
+          completion({
+            error: {
+              type: "network",
+              message: `TTS请求失败: ${resp.error.message || "未知错误"}`
+            }
+          });
+          return;
+        }
+
+        if (!resp.rawData) {
+          completion({
+            error: {
+              type: "data",
+              message: "未收到音频数据"
+            }
+          });
+          return;
+        }
+
+        // let audioData = $data.fromData(resp.rawData);
         completion({
           result: {
             type: 'base64',
-            value: audioData.toBase64(),
+            value: resp.rawData.toBase64(),
             raw: {}
           }
         });
       }
     });
   } catch (e) {
-    $log.error(e);
+    $log.error(`TTS处理异常: ${e}`);
+    completion({
+      error: {
+        type: "exception",
+        message: `TTS处理异常: ${e.message || "未知错误"}`
+      }
+    });
   }
+}
+
+function pluginTimeoutInterval() {
+  return parseInt($option.timeout) || 60;
 }
 
 exports.supportLanguages = supportLanguages;
 exports.tts = tts;
+exports.pluginValidate = pluginValidate;
+exports.pluginTimeoutInterval = pluginTimeoutInterval;

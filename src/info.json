@@ -1,6 +1,6 @@
 {
   "identifier": "com.whymeta.bob-plugin-siliconflow-tts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "category": "tts",
   "name": "Siliconflow 文本转语音插件",
   "summary": "Siliconflow 文本转语音插件",
@@ -9,17 +9,8 @@
   "homepage": "https://github.com/whymeta/bob-plugin-siliconflow-tts",
   "appcast": "https://raw.githubusercontent.com/whymeta/bob-plugin-siliconflow-tts/main/appcast.json",
   "minBobVersion": "1.6.0",
+  "apiUrl": "https://api.siliconflow.cn",
   "options": [
-    {
-      "identifier": "apiUrl",
-      "type": "text",
-      "title": "输入 API Url 完整路径",
-      "textConfig": {
-        "type": "visible",
-        "height": 21,
-        "placeholderText": "https://api.siliconflow.cn/v1/audio/speech"
-      }
-    },
     {
       "identifier": "apiKey",
       "type": "text",
@@ -228,6 +219,16 @@
           "value": "10.0"
         }
       ]
+    },
+    {
+      "identifier": "timeout",
+      "type": "text",
+      "title": "语音合成的超时时间（秒）",
+      "defaultValue": "60",
+      "textConfig": {
+        "type": "visible",
+        "placeholderText": "60"
+      }
     }
   ]
 }
