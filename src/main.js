@@ -22,7 +22,7 @@ function pluginValidate(completion) {
 
       const resp = await $http.request({
         method: "GET",
-        url: `${$option.apiUrl}/v1/audio/voice/list`,
+        url: `${$info.apiUrl}/v1/audio/voice/list`,
         header: {
           'Authorization': `Bearer ${$option.apiKey}`
         }
@@ -64,7 +64,7 @@ function tts(query, completion) {
   try {
     $http.request({
       method: 'POST',
-      url: `${$option.apiUrl}/v1/audio/speech`,
+      url: `${$info.apiUrl}/v1/audio/speech`,
       header: {
         'Authorization': `Bearer ${$option.apiKey}`,
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ function tts(query, completion) {
       body: {
         model: 'FunAudioLLM/CosyVoice2-0.5B',
         input: originText,
-        voice: `FunAudioLLM/CosyVoice2-0.5B:${$option.voice}`,
+        voice: `fishaudio/fish-speech-1.4:${$option.voice}`,
         speed: parseFloat($option.speed),
         gain: parseFloat($option.gain),
         response_format: "mp3",

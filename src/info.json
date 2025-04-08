@@ -1,6 +1,6 @@
 {
   "identifier": "com.whymeta.bob-plugin-siliconflow-tts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "category": "tts",
   "name": "Siliconflow 文本转语音插件",
   "summary": "Siliconflow 文本转语音插件",
@@ -20,7 +20,7 @@
       "identifier": "voice",
       "type": "menu",
       "title": "音色",
-      "defaultValue": "沉稳女声 - anna",
+      "defaultValue": "anna",
       "menuValues": [
         {
           "title": "沉稳男声 - alex",
